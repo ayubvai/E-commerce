@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA SHOP</title>
+    <link rel="website icon" type="png" href="AS...png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #292929;
+            --accent: #38a0b3;
+            --bg: #F9FAFB;
+            --text: #1F2937;
+            --card-bg: #FFFFFF;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* HEADER STYLES */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img{
+            height: 50px;
+            width: 50px;
+        }
+
+        .nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .action-button {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .action-button:hover {
+            color: var(--accent);
+        }
+
+        /* 3D Cover */
+        .cover {
+            width: 100%;
+            height: 400px;
+            background: url('https://content.api.news/v3/images/bin/7c1e150f21de257f8238e329820b52f1?width=1440') no-repeat center center;
+            background-size: cover;
+            opacity: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 750;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Scrollable Product Preview */
+        .scroll-preview {
+            display: flex;
+            overflow-x: scroll;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .scroll-preview img {
+            height: 200px;
+            object-fit: cover;
+            width: 300px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .scroll-preview img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Explore Button */
+        .explore-btn {
+            display: block;
+            margin: 2rem auto;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem;
+            background: #F1F5F9;
+        }
+
+        .feature-item {
+            text-align: center;
+            width: 30%;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Product Display Section */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .wishlist.active {
+            color: red;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        .card-body {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .card-body h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        button.add-cart {
+            padding: 0.75rem;
+            width: 100%;
+            border: none;
+            border-radius: 0.5rem;
+            background: var(--accent);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        button.add-cart:hover {
+            background: var(--primary);
+        }
+
+        /* Comment and Review Section */
+        .reviews {
+            padding: 2rem;
+            background: #F1F5F9;
+        }
+
+        .reviews h3 {
+            text-align: center;
+        }
+
+        .review-item {
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        /* Footer Section */
+        footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        footer div {
+            width: 30%;
+        }
+
+        footer h4 {
+            margin-bottom: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo"><img src="AS...png" alt="Aura Shop"></div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Kids</a>
+            <a href="#">Popular</a>
+            <a href="#">Reviews</a>
+            <a href="#">Contact Us</a>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="action-button">
+                <i class="fas fa-user"></i> Log In
+            </a>
+            <a href="#" class="action-button">
+                <i class="fas fa-shopping-cart"></i> Cart
+            </a>
+        </div>
+    </header>
+
+    <!-- 3D Cover -->
+    <div class="cover">
+        <div>
+            <h1>Welcome to Aura Shop</h1>
+            <p>Your one-stop shop for everything trendy</p>
+        </div>
+    </div>
+    <!-- Scrollable Product Preview -->
+    <div class="scroll-preview">
+        <img src="https://www.instyle.com/thmb/7kqxATQCD6HLaZc4fqKnJaEoWYI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/springfashiontrends2-48aefe91808541a2a7bc324e28b2ff76.jpg" alt="Product 1">
+        <img src="https://ichef.bbci.co.uk/ace/standard/1920/cpsprodpb/1939/live/67204fb0-353e-11ef-a044-9d4367d5b599.jpg" alt="Product 2">
+        <img src="https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg?cs=srgb&dl=pexels-alipazani-2584269.jpg&fm=jpg" alt="Product 3">
+        <img src="https://media.istockphoto.com/id/843822998/photo/beautiful-young-woman-looks-confident-in-trendy-stylish-clothes.jpg?s=612x612&w=0&k=20&c=SKprU9ImOjSM79zIfQ73Dr3saizKD21zb4z1HfEWRGk=" alt="Product 4">
+        <img src="https://t3.ftcdn.net/jpg/01/91/89/12/360_F_191891230_LRAZDEd8EZuG1SPmLMWGZfgVTRMP2zyD.jpg" alt="Product 5">
+    </div>
+
+    <!-- Explore More -->
+    <a href="#" class="explore-btn">Explore More Products</a>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-item">
+            <h3>Fast Delivery</h3>
+            <p>Get your products delivered quickly, straight to your doorstep.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Easy Payments</h3>
+            <p>Multiple payment options for your convenience.</p>
+        </div>
+        <div class="feature-item">
+            <h3>24/7 Support</h3>
+            <p>We're here to help you with any questions or issues.</p>
+        </div>
+    </section>
+
+    <!-- Product List -->
+    <main class="container" id="product-list">
+        <!-- Dynamic products -->
+    </main>
+
+    <!-- Comment and Review Section -->
+    <section class="reviews">
+        <h3>Customer Reviews</h3>
+        <div class="review-item">
+            <h4>John Doe</h4>
+            <p>Great products! Very satisfied with the quality.</p>
+        </div>
+        <div class="review-item">
+            <h4>Jane Smith</h4>
+            <p>Excellent service and fast delivery!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <h4>About </h4>
+            <p>Learn more about our company, mission, and values.</p>
+        </div>
+        <div>
+            <h4>Contact </h4>
+            <p>Email: support@genzstore.com</p>
+            <p>Phone: +123 456 789</p>
+        </div>
+        <div>
+            <h4>Follow </h4>
+            <p>Follow us on social media for the latest updates!</p>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { name: "Premium Saree", price: "1200 Taka", image: "https://media.assettype.com/englishkesari%2F2025-04-14%2Fvaxl2nuz%2FShruti_Haasan_6.jpg?rect=0%2C0%2C689%2C919" },
+            { name: "Classic Panjabi", price: "1500 Taka", image: "https://i.ytimg.com/vi/QZh5JfvCXaM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAMX3cUvZseEeGWVi2AOCDkFPaauw" },
+            { name: "Elegant Ornament", price: "3000 Taka", image: "https://img.freepik.com/premium-vector/poster-jewelry-store-with-black-vase-necklace-it_1112146-79.jpg" },
+            { name: "Designer Blouse", price: "800 Taka", image: "https://3.imimg.com/data3/BG/NO/MY-12739940/designer-blouse.png" }
+        ];
+
+        const productList = document.getElementById('product-list');
+
+        function renderProducts(list) {
+            productList.innerHTML = '';
+            list.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <i class="far fa-heart wishlist" onclick="toggleWishlist(this)"></i>
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="card-body">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}</p>
+                        <button class="add-cart">Add to Cart</button>
+                    </div>
+                `;
+                productList.appendChild(card);
+            });
+        }
+
+        function toggleWishlist(icon) {
+            icon.classList.toggle('active');
+            icon.classList.toggle('far');
+            icon.classList.toggle('fas');
+        }
+
+        renderProducts(products);
+    </script>
+
+</body>
+</html>
